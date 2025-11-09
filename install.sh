@@ -114,8 +114,6 @@ EOF
 }
 
 
-
-
 install_3-xui(){
     clear
     echo -e "${GREEN}正在安装 3X-UI 面板...${RESET}"
@@ -140,13 +138,21 @@ install_s-ui() {
     exit 0
 }
 
- manage_clean(){
+manage_clean(){
     clear
-    echo -e "${GREEN}🧹一键深度清理...${RESET}"
-    bash <(curl -fsSL https://raw.githubusercontent.com/hiapb/debian-safe/main/clean.sh)
-    sleep 2
+    echo -e "${GREEN}🧹 一键深度清理...${RESET}"
+    echo -e "${YELLOW}⚠️  此操作将清理系统缓存与依赖，仅建议在节点机执行。${RESET}"
+    echo -e "${RED}⚠️  非节点机执行可能影响系统或服务，请谨慎确认！${RESET}"
+    read -rp "是否继续执行深度清理？[y/N]: " confirm
+    if [[ "$confirm" =~ ^[Yy]$ ]]; then
+        bash <(curl -fsSL https://raw.githubusercontent.com/hiapb/debian-safe/main/clean.sh)
+        sleep 2
+    else
+        echo -e "${RED}❌ 已取消清理操作。${RESET}"
+        sleep 2
+    fi
     exit 0
- }
+}
 
 
 uninstall_im() {
