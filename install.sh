@@ -145,6 +145,14 @@ manage_clean(){
     sleep 2
 }
 
+install_mtr(){
+    clear
+    echo -e "${GREEN}💫 MTR 自动报告...${RESET}"
+    bash <(curl -Ls https://raw.githubusercontent.com/hiapb/auto-mtr/main/install.sh)
+    sleep 2
+    exit 0
+}
+
 
 uninstall_im() {
     echo -e "${RED}正在卸载 im 管理脚本...${RESET}"
@@ -163,6 +171,7 @@ show_menu() {
     echo "3) 安装 S-UI 面板"
     echo "4) 开启 BBR 并优化 TCP 设置"
     echo "5) 🧹一键深度清理"
+    echo "6) 💫 MTR 自动报告"
     echo "0) 卸载 Miskae 管理脚本"
     echo "q) 退出"
     echo "----------------------------------"
@@ -173,6 +182,7 @@ show_menu() {
         3)  install_s-ui ;;
         4)  enable_bbr ;;
         5)  manage_clean ;;
+        6)  install_mtr ;;
         0)  uninstall_im ;;
         q)  exit 0 ;;
         *)  echo -e "${RED}无效选项！${RESET}"; sleep 2; exit 1 ;;
